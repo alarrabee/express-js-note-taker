@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:true})); //will parse incoming URL-encoded 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
-app.get('/addnote', (req, res) => {
+app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
