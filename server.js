@@ -1,4 +1,6 @@
 const express = require('express'); //imports the express module
+const path = require('path'); //imports path module from node.js
+
 const app = express(); //sets up an instance of the express method
 const api = require('./routes'); //imports router from the specified file
 
@@ -18,10 +20,10 @@ app.use('/api', api); //mounting a router on a specific route path
 
 //html route handlers for GET requests to the root URL ('/'), and the addnote URL ('/addnote') and sends the file located at the specified path to the client as the response.
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html'); //
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 app.get('/addnote', (req, res) => {
-    res.sendFile(__dirname + '/public/notes.html');
+    res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
 

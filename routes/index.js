@@ -6,6 +6,8 @@ const uniqid = require('uniqid');
 
 //imports file system module from node.js
 const fs = require('fs');
+const { error } = require('console');
+const { stringify } = require('querystring');
 
 
 
@@ -58,9 +60,25 @@ router.post('/notes', (req, res) => {
 
 
 //DELETE
-// router.delete('/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+    let data = fs.readFileSync('./db/db.json', 'utf8');
+    let notes = JSON.parse(data);
 
-// });
+    const filteredNotes = notes.filter(function(note) {
+        return note.id !== noteId;
+    });
+
+    if (notes.length === filteredNotes.length) {
+        res.status(404).json({error: 'Note not found'});
+        return;
+    }
+
+    fs.writeFileSync('./db/db.json', stringify(filteredNotes, null, 4));
+
+    console.log(`Note deleted!`);
+    res.json({message: `Note ${noteId} deleted successfully`});
+});
 
 
 module.exports = router;
