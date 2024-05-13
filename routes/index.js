@@ -6,16 +6,13 @@ const uniqid = require('uniqid');
 
 //imports file system module from node.js
 const fs = require('fs');
-const { error } = require('console');
-const { stringify } = require('querystring');
-
 
 
 //api route handlers for GET, POST and DELETE
 
 //GET: when the request is made to the '/notes' endpoint, will read the contents of the 'db.json' file and send it back as the response in JSON format. 
 router.get('/notes', (req, res) => {
-    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    fs.readFile('../db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         }
@@ -36,7 +33,7 @@ router.post('/notes', (req, res) => {
     console.log(newNoteObj);
 
     //For persistant data: read the file (so you have the latest version), and then write to it
-    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    fs.readFile('../db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         }
