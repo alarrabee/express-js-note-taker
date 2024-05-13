@@ -16,7 +16,6 @@ app.use(express.urlencoded({extended:true})); //will parse incoming URL-encoded 
 
 
 
-
 //html route handlers for GET requests to the root URL ('/'), and the addnote URL ('/addnote') and sends the file located at the specified path to the client as the response.
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
