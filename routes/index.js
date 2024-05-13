@@ -4,12 +4,14 @@ const router = require('express').Router();
 //imports the uniqid mudule from node.js
 const uniqid = require('uniqid');
 
-
+//imports file system module from node.js
 const fs = require('fs');
 
-//api route handlers
 
-//GET
+
+//api route handlers for GET, POST and DELETE
+
+//GET: when the request is made to the '/notes' endpoint, will read the contents of the 'db.json' file and send it back as the response in JSON format. 
 router.get('/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
@@ -22,7 +24,7 @@ router.get('/notes', (req, res) => {
 });
 
 
-//POST
+//POST: handles post requests to the '/notes' endpoint by adding a new note to a JSON file 
 router.post('/notes', (req, res) => {
     const newNoteObj = {
         id: uniqid(), //generates unique ids
@@ -39,7 +41,8 @@ router.post('/notes', (req, res) => {
         else {
             const parsedNotes = JSON.parse(data);
             parsedNotes.push(newNoteObj);
-            const stringifyNotes = JSON.stringify(parsedNotes, '', (writeErr) => {
+            const stringifyNotes = JSON.stringify(parsedNotes, '', 4);
+            fs.writeFile('./db/db.json', stringifyNotes, (writeErr) => {
                 if (writeErr) {
                     console.error(writeErr);
                 }
