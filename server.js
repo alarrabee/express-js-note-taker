@@ -12,6 +12,18 @@ app.use(express.json()); //will parse incoming JSON requests and make that data 
 app.use(express.urlencoded({extended:true})); //will parse incoming URL-encoded requests and make the parsed data available in the req.body. useful for handling form submissions and other URL-encoded data without having to manually parse it.
 
 
+//html route handlers for GET requests to the root URL ('/'), and the addnote URL ('/addnote') and sends the file located at the specified path to the client as the response.
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html'); //
+});
+
+app.get('/addnote', (req, res) => {
+    res.sendFile(__dirname + '/public/notes.html');
+});
+
+
+
+
 //will start a server and begin listening for incoming connections on the specified port
 app.listen(PORT, () => {
     console.log(`Listening on Port ${PORT}`)
