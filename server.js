@@ -1,8 +1,9 @@
-const express = require('express'); //imports the express module
-const path = require('path'); //imports path module from node.js
-const api = require('./routes'); //imports router from the specified file
+const express = require('express'); //imports express.js module
+const path = require('path'); //imports built in node.js path to manipluate file paths
+const api = require('./routes'); //imports module located in ./routes that contains the route definitions for the API endpoints
 
-const app = express(); //sets up an instance of the express method
+const app = express(); //creates an instance of the express application that will be used to configure routes, middleware, and other settings
+
 
 //sets up the PORT that will listen for incoming connections on the port specified by the PORT environment variable, falling back to port 3001 if the environment variable is not set.
 const PORT = process.env.PORT || 3001;
@@ -24,8 +25,11 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+
+
 //mounting api router: use the routes defined in the api router whenever a request comes in with a URL that starts with /api.
 app.use('/api', api);
+
 
 //will start a server and begin listening for incoming connections on the specified port
 app.listen(PORT, () => {
