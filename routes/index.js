@@ -27,8 +27,9 @@ router.get('/notes', (req, res) => {
 
     //POST: handles post requests to the '/notes' endpoint by adding a new note to a JSON file 
 router.post('/notes', (req, res) => {
+    const timeStamp = new Date().getTime();
     const newNoteObj = {
-        // id: uniqid(), //generates unique ids
+        id: `note_${timeStamp}`,
         title: req.body.title,
         text: req.body.text,
     }
@@ -59,25 +60,25 @@ router.post('/notes', (req, res) => {
 
 
 //DELETE
-// router.delete('/notes/:id', (req, res) => {
-//     const noteId = req.params.id;
-//     let data = fs.readFileSync('./db/db.json', 'utf8');
-//     let notes = JSON.parse(data);
+router.delete('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+    let data = fs.readFileSync(filePath, 'utf8');
+    let notes = JSON.parse(data);
 
-//     const filteredNotes = notes.filter(function(note) {
-//         return note.id !== noteId;
-//     });
+    const filteredNotes = notes.filter(function(note) {
+        return note.id !== noteId;
+    });
 
-//     if (notes.length === filteredNotes.length) {
-//         res.status(404).json({error: 'Note not found'});
-//         return;
-//     }
+    if (notes.length === filteredNotes.length) {
+        res.status(404).json({error: 'Note not found'});
+        return;
+    }
 
-//     fs.writeFileSync('./db/db.json', stringify(filteredNotes, null, 4));
+    fs.writeFileSync(filePath, JSON.stringify(filteredNotes, null, 4));
 
-//     console.log(`Note deleted!`);
-//     res.json({message: `Note ${noteId} deleted successfully`});
-// });
+    console.log(`Note deleted!`);
+    res.json({message: `Note ${noteId} deleted successfully`});
+});
 
 
 module.exports = router;
