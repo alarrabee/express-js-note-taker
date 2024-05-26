@@ -4,7 +4,7 @@ Boot Camp Module 11 Challenge
 This is the week 11 Module Challenge for the U of M Coding Bootcamp
 
 # Express.js: Note Taker
-The challenge is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file. A bonus challenge was presented to add functionality that would enable the user to delete a note. 
+The challenge is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file. A bonus challenge was presented to add functionality that would enable the user to delete a note. The application will then be deployed to Render.
 
 ## User Story
 ```md
@@ -38,7 +38,7 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 ![image](https://github.com/alarrabee/express-js-note-taker/assets/149320486/0f7aacc9-c446-4b31-8f0c-3c8c1b7f5be2)
 
 
-## Installation Instructions
+## Installation Instructions for Personal Use without Render
 Prerequisites
 - Node.js
 - npm
@@ -64,8 +64,6 @@ Prerequisites
 2. Enter the note title and note text in the empty text fields.
 3. The **Save Note** and **Clear Form** buttons will appear in the top right corner.
 4. Click **Clear Form** to clear the text fields or **Save Note** to save the note.
-6. Saved notes will appear in the left-hand column.
+5. Saved notes will appear in the left-hand column.
+6. Click the note to view the note content.
 7. Click the trash can icon on each note to delete it.
-
-### Demo
-
